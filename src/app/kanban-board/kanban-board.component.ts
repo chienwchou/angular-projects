@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../layout/modal/modal.component';
 
 @Component({
   selector: 'app-kanban-board',
@@ -7,6 +9,8 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./kanban-board.component.scss']
 })
 export class KanbanBoardComponent implements OnInit {
+  onOpenModal = false;
+
   kanbanBoard = [
     {
       id: 1,
@@ -52,6 +56,11 @@ export class KanbanBoardComponent implements OnInit {
     }
   ];
 
+  constructor(private modalService: NgbModal) { }
+
+  ngOnInit(): void {
+  }
+
   drop(event: CdkDragDrop<{ title: string; description: string; }[]>) {
     if(event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -65,8 +74,7 @@ export class KanbanBoardComponent implements OnInit {
     }
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  open() {
+		const modalRef = this.modalService.open(ModalComponent);
+	}
 }

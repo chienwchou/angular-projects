@@ -7,12 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { KanbanColounCardComponent } from './kanban-board/kanban-coloun-card/kanban-coloun-card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ModalComponent } from './layout/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     KanbanBoardComponent,
-    KanbanColounCardComponent
+    KanbanColounCardComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
