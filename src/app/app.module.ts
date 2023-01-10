@@ -8,6 +8,7 @@ import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { KanbanColounCardComponent } from './kanban-board/kanban-coloun-card/kanban-coloun-card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalComponent } from './layout/modal/modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ModalComponent } from './layout/modal/modal.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    DragDropModule
+    DragDropModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

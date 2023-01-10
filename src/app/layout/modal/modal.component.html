@@ -1,12 +1,52 @@
-<p>Modal works!</p>
-
 <div class="modal-header">
   <h4 class="modal-title">Hi there!</h4>
-  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
 </div>
 <div class="modal-body">
-  <p>Hello, World1!</p>
+  <form [formGroup]="newTaskForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="new-kanban-task" class="form-label">Task:</label>
+      <input
+        id="new-kanban-task"
+        type="text"
+        formControlName="newTask"
+        placeholder="Task Name"
+        class="form-control"
+      />
+      <div id="new-kanban-task" class="form-text">It's required and needs to have a minimum of 3 characters.</div>
+    </div>
+    <div class="mb-3">
+      <label for="new-kanban-description" class="form-label"
+        >Description:
+      </label>
+      <input
+        id="new-kanban-description"
+        type="text"
+        formControlName="newTaskDescription"
+        placeholder="Task Description"
+        class="form-control"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!this.newTaskForm.valid"
+    >
+      Submit
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="activeModal.close('Close click')"
+    >
+      Close
+    </button>
+  </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>
