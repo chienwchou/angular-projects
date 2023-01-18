@@ -76,5 +76,12 @@ export class KanbanBoardComponent implements OnInit {
 
   open() {
 		const modalRef = this.modalService.open(ModalComponent);
+
+    modalRef.componentInstance.formResponse.subscribe((formResponse: {name: string; description: string}) => {
+      this.kanbanBoard[0].tasks.push({
+        title: formResponse.name,
+        description: formResponse.description
+      });
+    });
 	}
 }
