@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,7 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ModalComponent implements OnInit {
   newTaskForm: FormGroup;
-  @Output() formResponse: EventEmitter<{name: string; description: string}> = new EventEmitter();
+  @Input() sectionList: {index: number, title: string}[];
+  @Output() formResponse: EventEmitter<{name: string; description: string, section: number}> = new EventEmitter();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -23,7 +24,8 @@ export class ModalComponent implements OnInit {
           Validators.required,
           Validators.minLength(3)
       ]],
-      newTaskDescription: ['']
+      newTaskDescription: [''],
+      newTaskSection: [0, [Validators.required]]
     });
   }
 
@@ -34,7 +36,8 @@ export class ModalComponent implements OnInit {
   onSubmit() {
     this.formResponse.emit({
       name: this.newTaskForm.value.newTask,
-      description: this.newTaskForm.value.newTaskDescription
+      description: this.newTaskForm.value.newTaskDescription,
+      section: this.newTaskForm.value.newTaskSection
     });
   }
 }
